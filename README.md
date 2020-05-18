@@ -1,2 +1,2 @@
 # PublicCloudCourse
-Repository for the Design Assignments of Networking in Public Cloud Deployments
+Repository for the Exercises of Networking in Public Cloud Deployments Course
