@@ -17,8 +17,9 @@ In terms of requirements, I will do my best to describe the facts: going to real
 There are several ways to categorize the requirements. For example, one very common is to differentiate between functional and non-functional requirements. I think that, like in many other things in Networking/IT (MPLS is tunneling or encapsulation? should we use the term load-sharing or load-balancing ? job descriptions like Architect, Sr and so on..) the term requirement is vague, imprecise. From my experience, what I have seen is that it is typically said or understood as everything that the customer wants (a mix of needs and wishes), regardless if it is actually relevant or not from the technological perspective to what it is really needed from the business standpoint (proper needs). 
 
 I will do a different categorization, using the Aristotle´s terms essence and accident, to differentiate between requirements that are essential or not.
-Essence: property or set of properties that make an entity or substance what it fundamentally is, and which it has by necessity, and without it loses its identity.
-Accident: an attribute that may nor may not belong to a subject, without affecting its essence.
+
+* Essence: property or set of properties that make an entity or substance what it fundamentally is, and which it has by necessity, and without it loses its identity.
+* Accident: an attribute that may nor may not belong to a subject, without affecting its essence.
 
 ### What services should the public cloud deployment offer to the customers?
 
@@ -41,7 +42,7 @@ vs non-Transactional Database at the moment. Therefore, KISS rule will be follow
 
 There will be authorization implemented in order to provide write access to the site admin.
 As the business (consultant´s job) is not impacted in case the site is compromised, there´s no specific security requirements. 
-The basic security common rules of changing the passwords periodically, minimal password strength, periodic updates, ACLs will be configured they are easy to manage and it adds a simple layer of security.   
+The basic security common rules of changing the passwords periodically, minimal password strength, periodic updates, ACLs will be configured as they are easy to manage and it adds a simple layer of security.   
 
 ### What are the high availability requirements?
 
