@@ -1,0 +1,28 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+# Basic VPC
+Description: Basic VPC
+Parameters:
+  Name:
+    Description: VPC name
+    Type: String
+    Default: unnamed
+Resources:
+  VPC:                        
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 192.168.1.0/24
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+      - Key: name
+        Value: !Ref Name
+
+# Exporting the results
+Outputs:
+  VPC:
+    Description: VPC ID
+    Value: !Ref VPC
+  Name:
+      Description: VPC Name
+      Value: !Ref Name

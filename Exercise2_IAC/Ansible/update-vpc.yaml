@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Change the name of a VPC
+    ec2_vpc_net:
+      name: first_vpc
+      cidr_block: "192.168.1.0/24"
+      region: "eu-central-1"
+      state: "{{ state | default('present') }}"
+      tags:
+        name: JJ_vpc

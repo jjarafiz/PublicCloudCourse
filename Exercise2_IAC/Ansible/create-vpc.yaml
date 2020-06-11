@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Create a VPC
+    ec2_vpc_net:
+      name: first_vpc
+      cidr_block: "192.168.1.0/24"
+      region: "eu-central-1"
+      state: "{{ state | default('present') }}"
