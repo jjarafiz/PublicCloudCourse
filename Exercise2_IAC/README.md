@@ -16,7 +16,7 @@ I am going to execute the same tasks with each tool:
 
 ## ANSIBLE
 
-### 1.1 CREATE VPC ANSIBLE
+### 1.1 Create VPC
 
 $ ansible-playbook  create-vpc.yaml
 PLAY [localhost] ***************************************************************
@@ -28,6 +28,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=1    unreachable=0    failed=0   
 
 $ aws ec2 describe-vpcs
+
 -----------------------------------------------------------
 |                      DescribeVpcs                       |
 +---------------------------------------------------------+
@@ -55,7 +56,7 @@ $ aws ec2 describe-vpcs
 |||  Key               |  Name                          |||
 |||  Value             |  first_vpc                     |||
 
-### 1.2 MODIFY VPC NAME WITH ANSIBLE
+### 1.2 Modify VPC name
 
 $ ansible-playbook  update-vpc.yaml
 
@@ -68,6 +69,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=1    unreachable=0    failed=0   
 
 $ aws ec2 describe-vpcs
+
 -----------------------------------------------------------
 |                      DescribeVpcs                       |
 +---------------------------------------------------------+
@@ -98,7 +100,7 @@ $ aws ec2 describe-vpcs
 |||  name             |  JJ_vpc                         |||
 ||+-------------------+---------------------------------+||
 
-### 1.3 DELETE VPC WITH ANSIBLE
+### 1.3 Delete VPC
 
 $ ansible-playbook create-vpc.yaml -v -e state=absent
 
@@ -111,6 +113,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=1    unreachable=0    failed=0   
 
 $ aws ec2 describe-vpcs
+
 --------------------------------------------------
 |                  DescribeVpcs                  |
 +------------------------------------------------+
@@ -136,9 +139,10 @@ $ aws ec2 describe-vpcs
 
 ## CLOUDFORMATION
 
-### 2.1 CREATE VPC WITH CLOUDFORMATION
+### 2.1 Create VPC
 
 $ aws ec2 describe-vpcs
+
 --------------------------------------------------
 |                  DescribeVpcs                  |
 +------------------------------------------------+
@@ -164,6 +168,7 @@ $ aws ec2 describe-vpcs
 
 
 $ aws cloudformation validate-template --template-body file://create-vpc.yaml
+
 -------------------------------------------------------------
 |                     ValidateTemplate                      |
 +-------------------------------+---------------------------+
@@ -176,11 +181,13 @@ $ aws cloudformation validate-template --template-body file://create-vpc.yaml
 ||  unnamed     |  VPC name     |  False  |  Name          ||
 
 $ aws cloudformation describe-stacks
+
 ----------------
 |DescribeStacks|
 +--------------+
 
 $ aws cloudformation create-stack --stack-name JJ-cfn --template-body file://create-vpc.yaml --parameters ParameterKey=Name,ParameterValue=first_vpc
+
 -------------------------------------------------------------------------------------------------------------------
 |                                                   CreateStack                                                   |
 +---------+-------------------------------------------------------------------------------------------------------+
@@ -267,9 +274,10 @@ $ aws ec2 describe-vpcs
 ||||  State                                            |  associated                                                                     ||||
 |||+---------------------------------------------------+---------------------------------------------------------------------------------+|||
 
-### 2.2 MODIFY VPC NAME WITH CLOUDFORMATION
+### 2.2 Modify VPC name
 
 $aws cloudformation update-stack --stack-name JJ-cfn --use-previous-template --parameters ParameterKey=Name,ParameterValue=JJ_vpc
+
 -------------------------------------------------------------------------------------------------------------------
 |                                                   UpdateStack                                                   |
 +---------+-------------------------------------------------------------------------------------------------------+
@@ -307,6 +315,7 @@ $ aws cloudformation describe-stacks
 ||+----------------------------------------------------------------------------+------------------------------------------+||
 
 $aws ec2 describe-vpcs
+
 ---------------------------------------------------------------------------------------------------------------------------------------------
 |                                                               DescribeVpcs                                                                |
 +-------------------------------------------------------------------------------------------------------------------------------------------+
@@ -358,11 +367,12 @@ $aws ec2 describe-vpcs
 ||||  State                                            |  associated                                                                     ||||
 |||+---------------------------------------------------+---------------------------------------------------------------------------------+|||
 
-### 2.3 DELETE VPC WITH CLOUDFORMATION
+### 2.3 Delete VPC name
 
 $ aws cloudformation delete-stack --stack-name JJ-cfn
 
 $ aws cloudformation describe-stacks
+
 ----------------
 |DescribeStacks|
 +--------------+
@@ -392,7 +402,7 @@ $ aws ec2 describe-vpcs
 
 ## TERRAFORM
 
-### 3.1 CREATE VPC WITH TERRAFORM
+### 3.1 Create VPC 
 
 $ terraform plan -out plans/create-vpc.tfplan
 Refreshing Terraform state in-memory prior to plan...
@@ -502,7 +512,8 @@ $ aws ec2 describe-vpcs
 |||  Value             |  first_vpc                     |||
 ||+--------------------+--------------------------------+||
 
-### 3.2 MODIFY VPC NAME WITH TERRAFORM
+
+### 3.2 Modify VPC name
 
 $ terraform apply -var-file update-vpc.tfvars
 aws_vpc.first_VPC: Refreshing state... [id=vpc-0f0ec44a09285ebe1]
@@ -566,6 +577,7 @@ resource "aws_vpc" "first_VPC" {
     }
 }
 $ aws ec2 describe-vpcs
+
 -----------------------------------------------------------
 |                      DescribeVpcs                       |
 +---------------------------------------------------------+
@@ -594,7 +606,7 @@ $ aws ec2 describe-vpcs
 |||  Value                 |  JJ_vpc                    |||
 ||+------------------------+----------------------------+||
 
-### 3.3 DELETE VPC WITH TERRAFORM
+### 3.3 Delete VPC
 
 $ terraform destroy
 aws_vpc.first_VPC: Refreshing state... [id=vpc-0f0ec44a09285ebe1]
