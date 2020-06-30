@@ -1218,7 +1218,7 @@ $ aws ec2 describe-instances
 
 ~~~
 ## Tests
-~~~
+
 ### SSH to Web Server 
 ~~~
 $ ssh -i KeyPairJJ.pem ubuntu@ec2-18-158-31-223.eu-central-1.compute.amazonaws.com
